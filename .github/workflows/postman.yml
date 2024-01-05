@@ -1,0 +1,26 @@
+name: postman test
+on: [push]
+jobs:
+  run-postmain-test:
+    runs-on: ubuntu-latest
+    strategic:
+      matrix:
+        node: ['16' ,'18']
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout/@v4
+
+      - name: install node
+        uses: actions/setup-node/@v4  
+        with:
+          node-version: ${{matrix.node}}
+
+      - name: install nodeman
+        run: npx install nodeman
+
+      - name: run nodeman
+        run: nodeman run postman_tests\Books.postman_collection.json -e postman_tests\test.postman_environment.json
+
+      
+      
