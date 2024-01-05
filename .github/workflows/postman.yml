@@ -3,9 +3,7 @@ on: [push]
 jobs:
   run-postmain-test:
     runs-on: ubuntu-latest
-    strategic:
-      matrix:
-        node: ['16' ,'18']
+
 
     steps:
       - name: Checkout Repository
@@ -14,7 +12,7 @@ jobs:
       - name: install node
         uses: actions/setup-node/@v4  
         with:
-          node-version: ${{matrix.node}}
+          node-version: 18
 
       - name: install nodeman
         run: npx install nodeman
