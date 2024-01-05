@@ -3,6 +3,9 @@ on: [push]
 jobs:
   run-postmain-test:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        version: [16,18]
 
 
     steps:
@@ -12,7 +15,7 @@ jobs:
       - name: install node
         uses: actions/setup-node/@v4  
         with:
-          node-version: 18
+          node-version: ${{matrix.version}}
 
       - name: install nodeman
         run: npm install -g nodeman
